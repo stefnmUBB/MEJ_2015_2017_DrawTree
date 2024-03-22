@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1487652873 source:c:\users\client\desktop\copac3_cpp\main.cpp
+	<graphics.h>
+	<math.h>
+

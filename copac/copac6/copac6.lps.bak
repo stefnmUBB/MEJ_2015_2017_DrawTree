@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="2">
+      <Unit0>
+        <Filename Value="copac6.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="44"/>
+        <CursorPos X="10" Y="48"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="wingraph.pas"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="2193"/>
+        <CursorPos X="52" Y="2202"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit1>
+    </Units>
+    <JumpHistory Count="4" HistoryIndex="3">
+      <Position1>
+        <Filename Value="copac6.lpr"/>
+        <Caret Line="63" Column="20" TopLine="48"/>
+      </Position1>
+      <Position2>
+        <Filename Value="copac6.lpr"/>
+        <Caret Line="40" Column="9" TopLine="30"/>
+      </Position2>
+      <Position3>
+        <Filename Value="copac6.lpr"/>
+        <Caret Line="52" Column="39" TopLine="43"/>
+      </Position3>
+      <Position4>
+        <Filename Value="copac6.lpr"/>
+        <Caret Line="54" Column="11" TopLine="44"/>
+      </Position4>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

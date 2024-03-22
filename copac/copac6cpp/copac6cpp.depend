@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1489178641 source:c:\users\client\desktop\copac6cpp\main.cpp
+	<iostream>
+	<graphics.h>
+	<math.h>
+

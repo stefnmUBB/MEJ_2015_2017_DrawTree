@@ -1,0 +1,124 @@
+Pasul 1: Gandim matematic.
+
+1.a. Incercam sa desenam un segment de lungime l care formeaza un unghi u cu orizontala 
+    si care are varful la coordonatele (x1,y1). Va trebui deci sa determinam coordonatele
+    celuilalt segment (x2,y2). [1.bmp] Obtinem:
+
+    x2 = x1+l*cos(u)
+    y2 = y1+l*sin(u)
+ 
+     Daca in punctul A al segmentului [AB] putem duce patru astfel de unghiuri, in fiecare
+    dintre cadranele determinate de cele doua perpendiculare care trec prin A. [2.bmp] 
+    Sa le notam o00, o01, o10, o11, in functie de semnul pe care il au l*cos(u), respectiv
+    l*sin(u). Astfel, pentru fiecare dintre cadrane putem scrie formulele:
+    x2 = x1+semnx*l*cos(u)
+    y2 = y1+semny*l*sin(u)
+    semnx si semny sunt date de numarotarea cadranelor:
+       pentru o00 semnx= 1; semny=-1
+       pentru o01 semnx=-1; semny= 1
+       pentru o10 semnx= 1; semny=-1
+       pentru o11 semnx= 1; semny= 1
+     In rezolvarea  noastra vom avea nevoie doar de unghiurile formate in o00 si o10.
+     
+1.b.  Compunem o regula dupa care se desfasoara arborele. Vom cauta aceasta regula 
+    folosind unghiuri congruente, pe care le vom randomiza ulterior.
+    -Construim tulpina perpendiculara pe orizontala
+    -Ramificam trunchiul in doua ramuri sub un unghi u cu verticala ((90-u) cu orizontala)
+    -Fiecare ramura o impartim in alte doua subramuri ca la pasul anterior
+      Desi procesul ar continua la infinit, ne vom opri atunci cand lungimea segmentului
+    [AB] devine 1 pixel.
+
+Pasul 2: Implementam functiile.
+
+2.a. Cu ajutorul calculatorului vom "intui" coordonatele segmentului de la 1.a.
+    Vom defini o structura de date care va memora coordonatele unui segment:
+
+////////////////////////////////////////////////////////////
+
+type coordinates = record x,y:integer; end;
+
+function setcoord(x,y:integer):coordinates;
+begin
+  result.x:=x;
+  result.y:=y;
+end; 
+
+////////////////////////////////////////////////////////////
+
+     Scriem o functie care calculeaza coordonatele segmentului de lungime l
+    cu celelalt capat in (pos.x,pos.y) care formeaza un unghi u cu orizontala
+    in cadranul o (notatiile sunt cele de mai sus):
+
+////////////////////////////////////////////////////////////
+    
+function angle(pos:coordinates;l,u,o:integer):coordinates;
+var v1,v2: integer;
+    semn: coordinates;
+begin
+  v1:=trunc(l*cos(Pi*u/180)); //sin() si cos() calculeaza functiile
+  v2:=trunc(l*sin(Pi*u/180)); //trigonometrice ale radianilor
+  case o of
+  o00: semn:=setcoord(-1,-1);
+  o01: semn:=setcoord(-1, 1);
+  o10: semn:=setcoord( 1,-1);
+  o11: semn:=setcoord( 1, 1);
+  end;
+  result:=setcoord(pos.x+semn.x*v1, pos.y+semn.y*v2);  
+  line(pos.x,pos.y,result.x,result.y); //trasam segmentul respectiv
+end;  
+
+//////////////////////////////////////////////////////////// 
+
+
+2.b. Vom desena arborele (am folosit aici liste construite printr-un 
+    algoritm     recursiv). Definim structura "brench" care va reprezenta
+    o ramura a copacului:
+
+////////////////////////////////////////////////////////////
+
+type  pbrench= ^brench;
+
+      brench= record
+             nod:coordinates;
+             b1,b2:pbrench;
+           end; 
+
+////////////////////////////////////////////////////////////
+
+      Pentru fiecare ramura sunt memorate coordonatele ei si adresele
+     unde sunt memorate b1 (dubramura din stanga) si b2(subramura din dreapta).
+
+      Procedura "Draw" deseneaza copacul in pasii urmatori:
+     1-stabileste un nod in varful trunchiului din care construieste doua
+      ramuri
+     2-stabileste nodul in varful ramurii din stanga si se construiesc
+       subramurile ei (dupa fiecare pas lungimea se injumatateste)
+     3-muta nodul in varful ultimei ramuri din stanga construite si se
+       construiesc subramurile ei
+     4-se repeta procedeul pana cand l devine 1px
+     5-cand s-a ajuns in varf, nodul se muta spre dreapta si se repeta
+       procedeul pana cand se ajunge in varful extrem din dreapta  
+
+////////////////////////////////////////////////////////////       
+
+procedure Draw(b:pbrench;u,l:integer);
+var aux:pbrench;
+    pos:Coordinates;
+    l1:integer;
+begin
+  new(b^.b1); new(b^.b2);
+  l:=3*l div 5;
+  b^.b1^.nod:=angle(b^.nod,l,90-random(u),o00); 
+  b^.b2^.nod:=angle(b^.nod,l,90-random(u),o10);
+  aux:=b; //memoram ramura in alta variabila
+  l1:=l;
+  if l>0 then
+  begin
+  b:=b^.b1;
+  Draw(b,u,l);
+  aux:=aux^.b2;
+  Draw(aux,u,l1); 
+  end;
+end;      
+
+////////////////////////////////////////////////////////////    
