@@ -1,0 +1,30 @@
+Pentru a face un copac sa se miste pe ecranul calculatorului, trebuie sa cream
+o animatie.
+
+ Am creat in programul Free Pascal 2.2.4 o asfel de animatie.
+ 
+ Algoritmul este foarte simplu:
+
+ Scriem un fisier cu caractere simbol (carora le atribuim o anumita caracteristica).
+ In fisierele "copac1.txt", "copac2.txt", "copac3.txt", "copac4.txt", caracterele 
+simbol sunt urmatoarele:
+
+ - "/"        : Cand calculatorul intalneste acest caracter, trece pe randul urmator, 
+                pe pozitia 1. 
+ - " "(spatiu): Calculatorul sare peste acest caracter. De aceea el are rol in 
+                pozitionarea imaginii.
+ - "v"        : Atunci cand intalneste acest caracter, calculatorul coloreaza casuta
+                pe care se afla cursorul in verde. Implicit, cursorul trece in casuta
+                urmatoare.
+ -"m"         : Atunci cand intalneste acest caracter, calculatorul coloreaza casuta
+                pe care se afla cursorul in maro. Implicit, cursorul trece in casuta
+                urmatoare.
+
+Des exemplu, putem reprezenta un copacel (puiet) astfel:
+
+/                     (1.Primul rand e gol)
+/   v                 (2.Pe acest rand, va aparea un spatiu verde la pozitia 4)  
+/  vvv                (3.Aici, vor aparea trei spatii verzi consecutive)
+/   v                 (4.Analog ca la 2)
+/   m                 (5.Analog ca la 2, doar ca se va schimba culoarea)
+ 

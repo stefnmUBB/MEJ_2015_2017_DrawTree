@@ -1,0 +1,5 @@
+program copac;
+
+begin
+end.
+

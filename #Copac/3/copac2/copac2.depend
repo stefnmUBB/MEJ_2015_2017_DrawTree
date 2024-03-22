@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1385316878 source:d:\__programs\proiecte\#copac\3\copac2\main.cpp
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<stdlib.h>
+
+1066765314 c:\program files (x86)\codeblocks\mingw\include\gl\glut-3.7\include\gl\glut.h
+	"freeglut_std.h"
+
+1104628178 c:\program files (x86)\codeblocks\mingw\include\gl\glut-3.7\include\gl\freeglut_std.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+

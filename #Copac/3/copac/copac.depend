@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1487301527 source:d:\__programs\proiecte\#copac\3\copac\main.cpp
+	<GL/glut.h>
+	<GL/glu.h>
+	<stdio.h>
+
